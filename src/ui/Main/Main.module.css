@@ -18,6 +18,8 @@
 .errorMessage{
     color: red;
     height: 20px;
+    padding-top: 6px;
+    text-align: start;
 }
 .mainBlock{
     display: flex;
