@@ -1,0 +1,22 @@
+.paginator {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+    margin: 10px;
+}
+
+.page {
+    width: 20px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 3px 0 0;
+    background-color: #21268F;
+    color: white;
+}
+
+.selectedPage {
+    font-weight: bold;
+    background-color: #242ddf;
+}
+
