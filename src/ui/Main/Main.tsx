@@ -22,25 +22,40 @@ export const Main = () => {
         setName(e.currentTarget.value)
     }
 
-    const getPeoples = () => {
+    const getPeoples = async () => {
         if (name.length === 1) {
             setErrorMessage('Name must be longer, then 1 symbol')
         } else {
-            starWarsAPI.getPeoples(undefined, undefined, name)
-                .then((res) => {
-                    const peoplesResponse = res.data.results
-                    setPeoples(peoplesResponse)
-                    setTotalItemsCount(res.data.count)
-                    return peoplesResponse
-                })
-                .then((peoplesResponse) => {
+            try{
+                const res = await starWarsAPI.getPeoples(undefined, undefined, name)
+                const peoplesResponse = res.data.results
+                setPeoples(peoplesResponse)
+                setTotalItemsCount(res.data.count)
+                try{
                     if (!peoplesResponse?.length) {
                         setErrorMessage('The hero does not exist!')
                     }
-                })
-                .catch(() => {
+                }catch(e){
+                    // throw new Error('Some error occurred...')
+                }
+            } catch(e){
                     throw new Error('Some error occurred...')
-                })
+                }
+            // starWarsAPI.getPeoples(undefined, undefined, name)
+            //     .then((res) => {
+            //         const peoplesResponse = res.data.results
+            //         setPeoples(peoplesResponse)
+            //         setTotalItemsCount(res.data.count)
+            //         return peoplesResponse
+            //     })
+            //     .then((peoplesResponse) => {
+            //         if (!peoplesResponse?.length) {
+            //             setErrorMessage('The hero does not exist!')
+            //         }
+            //     })
+            //     .catch(() => {
+            //         throw new Error('Some error occurred...')
+            //     })
         }
     }
     const getPeopleItem = (peopleNumber: number) => () => {
